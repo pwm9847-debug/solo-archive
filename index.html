@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1인 기업가 아카이빙 (시므온)</title>
+<meta name="description" content="혼자 일하다 막힐 때 꺼내 쓰는 1인 기업가용 자료 모음">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a href="#top" class="logo" id="logo"></a>
+    <nav class="nav">
+      <a href="#materials">자료</a>
+      <a href="#finder">자료 찾기</a>
+      <a href="#requests">요청함</a>
+      <a href="#about">소개</a>
+    </nav>
+    <label class="search">
+      <input id="q" type="search" placeholder="search" autocomplete="off" aria-label="자료 검색">
+    </label>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <svg class="hero-art" viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#4d93bd"/><stop offset=".55" stop-color="#2a6f9c"/><stop offset="1" stop-color="#174f78"/>
+        </linearGradient>
+        <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff6d6"/><stop offset=".55" stop-color="#fbdca8"/><stop offset="1" stop-color="#f4b7a6"/>
+        </linearGradient>
+        <pattern id="slats" width="6" height="14" patternUnits="userSpaceOnUse"><rect width="6" height="3" y="11" fill="#2a6f9c" opacity=".28"/></pattern>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter>
+        <filter id="soft2"><feGaussianBlur stdDeviation="28"/></filter>
+      </defs>
+      <rect width="600" height="440" fill="url(#wall)"/>
+      <g transform="skewX(-9)" filter="url(#soft2)" opacity=".7">
+        <rect x="90" y="-20" width="120" height="470" fill="#fff0c4"/><rect x="290" y="-20" width="120" height="470" fill="#fbd9b0"/><rect x="490" y="-20" width="120" height="470" fill="#f6c0b0"/>
+      </g>
+      <g transform="skewX(-9)" filter="url(#soft)">
+        <rect x="100" y="30" width="95" height="340" fill="url(#glow)"/><rect x="100" y="30" width="95" height="340" fill="url(#slats)"/>
+        <rect x="300" y="30" width="95" height="340" fill="url(#glow)" opacity=".92"/><rect x="300" y="30" width="95" height="340" fill="url(#slats)"/>
+        <rect x="500" y="30" width="95" height="340" fill="url(#glow)" opacity=".85"/><rect x="500" y="30" width="95" height="340" fill="url(#slats)"/>
+      </g>
+    </svg>
+    <div class="hero-in">
+      <h1 class="hero-title">1인 기업가 아카이빙</h1>
+      <p class="hero-sub en">Resource archive <span>by 시므온</span></p>
+      <p class="hero-copy">혼자 일하다 막힐 때 꺼내 쓰는 자료.<br>가격, 글쓰기, 영업, 세금까지. 혼자 사업하면서 막혔던 순서대로 만들었어요.</p>
+    </div>
+  </section>
+
+  <section class="phil wrap" data-wm="Archive">
+    <div class="phil-in">
+      <h2 class="en">Archive<br>Notes</h2>
+      <div>
+        <p class="phil-copy">읽고 끝나는 글 말고, 바로 채워서 쓰는 양식 위주예요.<br>자료는 무료고, 일부는 받기 전에 지금 상황을 한 줄만 남겨 주세요. 다음 자료는 그 한 줄들을 보고 만들어요.</p>
+        <p class="eyebrow en" id="heroEyebrow"></p>
+        <div class="stats">
+          <div><b id="statCount">0</b><span>자료</span></div>
+          <div><b id="statCats">0</b><span>분류</span></div>
+          <div><b id="statLast">-</b><span>마지막 등재</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-in" id="marq"></div></div>
+
+  <section class="sec wrap" id="materials" data-wm="Materials">
+    <div class="sec-head">
+      <h2 class="en">Materials</h2><span class="slash"></span><small>전체 자료</small>
+      <p>막힌 지점 하나에 자료 하나씩. 최신순이에요.</p>
+    </div>
+    <div class="filters">
+      <div class="chips" id="catChips" role="tablist" aria-label="분류"></div>
+      <select id="stageSel" aria-label="사업 단계"></select>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>맞는 자료가 아직 없어요. 아래 요청함에 남겨 주시면 만들게요.</p>
+  </section>
+
+  <section class="sec wrap" id="picks" data-wm="Start here">
+    <div class="sec-head">
+      <h2 class="en">Start here</h2><span class="slash"></span><small>처음이라면</small>
+      <p>뭘 받아야 할지 모르겠을 때 먼저 보세요.</p>
+    </div>
+    <ol class="picks" id="picks-list"></ol>
+    <aside class="op-note">
+      <span class="en" id="noteMeta"></span>
+      <h3 id="noteTitle"></h3>
+      <div id="noteBody"></div>
+      <p class="sign" id="noteSign"></p>
+    </aside>
+  </section>
+
+  <section class="sec wrap" id="finder" data-wm="Finder">
+    <div class="sec-head">
+      <h2 class="en">Finder</h2><span class="slash"></span><small>자료 찾기</small>
+      <p>두 번만 누르면 돼요.</p>
+    </div>
+    <div class="finder">
+      <div class="finder-step">
+        <span class="en">STEP 1 · 지금 단계</span>
+        <div class="chips" id="fStage"></div>
+      </div>
+      <div class="finder-step">
+        <span class="en">STEP 2 · 요즘 막히는 장면</span>
+        <div class="chips" id="fScene"></div>
+      </div>
+      <div class="finder-out" id="fOut">단계랑 장면을 고르면 여기에 자료가 떠요.</div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="requests" data-wm="Requests">
+    <div class="sec-head">
+      <h2 class="en">Requests</h2><span class="slash"></span><small>자료 요청함</small>
+      <p>공감이 많은 것부터 만들어요.</p>
+    </div>
+    <ul class="req" id="reqList"></ul>
+    <div class="next" id="next"></div>
+    <a class="btn" id="reqBtn" href="#" target="_blank" rel="noopener">request</a>
+  </section>
+
+  <section class="sec wrap about" id="about" data-wm="About">
+    <div class="sec-head">
+      <h2 class="en">About</h2><span class="slash"></span><small>소개</small>
+    </div>
+    <p>안녕하세요, 시므온이에요.<br>1인 사업가의 업무 자동화와 고객(DB) 획득을 돕습니다.</p>
+  </section>
+
+</main>
+
+<section class="news">
+  <div class="wrap news-in">
+    <p class="en">Newsletter</p>
+    <h2>새 자료는 목요일에<br>메일로 먼저 알려 드려요.</h2>
+    <a class="btn btn-light" id="newsBtn" href="#">subscribe</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <span id="footName"></span>
+  <nav>
+    <a href="#about">소개</a>
+    <a href="#requests">자료 요청</a>
+    <button type="button" class="linkbtn" data-legal="terms">이용약관</button>
+    <button type="button" class="linkbtn" data-legal="privacy">개인정보처리방침</button>
+    <a href="#top" class="en">Page Top</a>
+  </nav>
+</footer>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<button type="button" class="to-top en" id="toTop" aria-label="맨 위로">TOP</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="legal" hidden>
+  <div class="modal-bg" data-lclose></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="lTitle">
+    <button class="x" data-lclose aria-label="닫기">×</button>
+    <h3 id="lTitle"></h3>
+    <div id="lBody" class="legal-body"></div>
+  </div>
+</div>
+
+<!-- 자료 상세 -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer-bg" data-close></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+    <button class="x" data-close aria-label="닫기">×</button>
+    <p class="mono" id="dMeta"></p>
+    <h3 id="dTitle"></h3>
+    <p id="dDesc" class="d-desc"></p>
+    <dl class="d-info" id="dInfo"></dl>
+
+    <form id="gate" class="gate" hidden>
+      <label for="ans">받기 전에, 지금 상황을 한 줄만 알려 주세요</label>
+      <textarea id="ans" rows="3" maxlength="300" placeholder="예) 문의는 주 2~3건 오는데 결제까지 가는 건 한 달에 한 번이에요"></textarea>
+      <button class="btn" type="submit">남기고 받기</button>
+      <small>남겨 주신 내용은 다음 자료를 만드는 데만 써요. 이름이나 연락처는 받지 않아요. <button type="button" class="linkbtn" data-legal="privacy">개인정보처리방침</button></small>
+    </form>
+
+    <div id="getBox" class="get" hidden>
+      <a class="btn" id="getBtn" href="#" download>download</a>
+      <p id="getNote" class="get-note"></p>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="fx.js"></script>
+</body>
+</html>
